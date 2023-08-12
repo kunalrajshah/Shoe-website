@@ -49,9 +49,15 @@ const Input = (props) => {
         M: parseInt(quantM),
         S: parseInt(quantS)
         },
-      Quantity:1
     };  
     setData([...data,obj]);
+    // Clearing Input Field
+    setShoeName('');
+    setDescription('') ;
+    setPrice(' ');
+    setQuantL('');
+    setQuantM('');
+    setQuantS('');
   };
   
   return (
