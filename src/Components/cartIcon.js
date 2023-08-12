@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { useContext } from 'react';
+import CartContext from './Store/CartContext';
 
-const cartIcon = () => {
+const CartIcon = (props) => {
+  
+  const ctxt=useContext(CartContext);
+
   return (
     <div className="absolute top-4 right-4 flex items-center">
-    <div className="rounded-full border-2 border-gray-700 p-2 mr-2">
+    <div className="rounded-full border-2 border-gray-700 p-2 mr-2 cursor-pointer" onClick={props.dis}>
       <svg
         className="w-6 h-6 text-gray-700"
         fill="none"
@@ -19,9 +24,9 @@ const cartIcon = () => {
         ></path>
       </svg>
     </div>
-    <span className="text-gray-700 font-semibold">Cart</span>
+    <span className="text-gray-700 font-semibold cursor-pointer" onClick={props.dis}>Cart <span className="text-red-500">{ctxt.items.length}</span></span>
   </div>
   )
 }
 
-export default cartIcon;
+export default CartIcon;

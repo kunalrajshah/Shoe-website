@@ -4,7 +4,8 @@ import ShoeDescPriceInput from './ShoeDescPriceInput';
 import Quantitysize from './Quantitysize';
 import Output from './Output';
 
-const Input = () => {
+
+const Input = (props) => {
   const [shoeName,setShoeName]=useState('');
   const [description,setDescription]=useState('');
   const [price,setPrice]=useState('');
@@ -12,6 +13,7 @@ const Input = () => {
   const [quantM,setQuantM]=useState('');
   const [quantS,setQuantS]=useState('');
 
+  
   // For Output 
   const [data,setData]=useState([]);
 
@@ -34,11 +36,11 @@ const Input = () => {
     setQuantS(event.target.value);
   }
   
-  
+  let obj={};
   const InputDatasHandler=(event)=>{
     event.preventDefault();
-    const obj={
-      id:shoeName,
+     obj={
+      id:Math.random().toString(),
       shoeName:shoeName,
       description:description ,
       price :price,
@@ -47,13 +49,14 @@ const Input = () => {
         M: parseInt(quantM),
         S: parseInt(quantS)
         },
+      Quantity:1
     };  
     setData([...data,obj]);
   };
   
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <CartIcon />
+      <CartIcon   dis={props.cartHandler}/>
    
     <form className="bg-white p-8 shadow-md rounded-lg">
       <div className="mb-4">
@@ -76,7 +79,7 @@ const Input = () => {
         Add Product
       </button>
     </form>
-    <Output inputsData={data}/>
+    <Output inputsData={data} toggleData={setData} />
   </div>
   )
 }
